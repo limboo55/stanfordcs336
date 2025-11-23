@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS336 Project Proposal</title>
+    <!-- Import selected fonts: Merriweather for titles, DM Sans for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- This CSS block contains the full styling for the presentation -->
+    <style>
+/* 1. THE SETUP */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  /* Use a light grey background for the page canvas */
+  background-color: #f1f5f9;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px 0;
+  place-items: center;
+}
+
+.slide-container {
+  align-items: center;
+  /* Clean white background for slides */
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 720px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 60px;
+  position: relative;
+  width: 1280px;
+}
+
+/* 1.1 BACKGROUND STYLING (Subtle) */
+
+.slide-container::before {
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+  /* A very subtle gradient blob in the corner for visual interest */
+  background-image: radial-gradient(circle at 0% 0%, hsla(217, 71%, 53%, 0.1), hsla(217, 71%, 53%, 0) 25%);
+}
+
+.slide-container>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* 2. CONSISTENT TYPOGRAPHY (Custom Theme) */
+
+/* Headings Font: Merriweather */
+.slide-container h1,
+.slide-container h2,
+.slide-container h3 {
+  /* Deep Blue (Academic Feel) */
+  color: #00274C;
+  font-weight: 700;
+  font-family: 'Merriweather', serif;
+  margin: 0;
+}
+
+/* Body Text Font: DM Sans */
+.slide-container p,
+.slide-container li,
+.slide-container .subtitle {
+  /* Dark Slate Gray (Readable) */
+  color: #334155;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Consistent Font Sizes */
+.slide-container h1 {
+  font-size: 70px;
+}
+
+.slide-container .slide-title {
+  /* This is an h2 */
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-align: left;
+  width: 100%;
+}
+
+.slide-container h3 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* Unified body text size */
+.slide-container p,
+.slide-container li,
+.slide-container .subtitle {
+  font-size: 20px; /* Slightly larger for clarity */
+  line-height: 1.5;
+}
+
+.slide-container .subtitle {
+  font-weight: 400;
+  margin: 20px auto;
+  font-size: 22px;
+}
+
+.slide-container .content-area {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  width: 100%;
+}
+
+/* 3. LAYOUT DEFINITIONS (with Custom Theme) */
+
+.title-layout {
+  text-align: center;
+}
+
+.two-column {
+  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  width: 100%;
+}
+
+.two-column.tiled {
+  align-items: stretch;
+}
+
+.two-column.tiled>div {
+  /* Light gray-blue background for tiles */
+  background-color: #F8FAFC;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 40px;
+}
+
+.two-column.tiled h3 {
+  /* Bright Blue Accent */
+  color: #3B82F6;
+  font-size: 28px; /* Slightly smaller h3 for tiles */
+}
+
+.two-column ul {
+  list-style: disc;
+  margin: 0;
+  padding-left: 30px; /* Adjusted padding */
+}
+
+.two-column li {
+  margin-bottom: 15px;
+  font-size: 18px; /* Smaller for bullet points */
+  line-height: 1.4;
+}
+
+/* Tiled content for 3 columns */
+.tiled-content {
+  align-items: stretch;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  width: 100%;
+}
+
+.tile {
+  align-items: center;
+  /* Light gray-blue background for tiles */
+  background-color: #F8FAFC;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-start;
+  padding: 30px;
+  text-align: center;
+}
+
+.tile h3 {
+    /* Bright Blue Accent */
+    color: #3B82F6;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* Bullet list for the limitations slide */
+.bullet-list {
+  max-width: 900px;
+  width: 100%;
+}
+
+.bullet-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bullet-list li {
+  padding-left: 0; /* Removed padding */
+  position: relative;
+  font-size: 20px; /* Consistent body font */
+  margin-bottom: 20px; /* Spacing between items */
+}
+
+.bullet-list li strong {
+  /* Dark Blue for emphasis */
+  color: #00274C;
+  font-weight: 700;
+  display: block; /* Make strong tag a block */
+  margin-bottom: 5px; /* Space between title and text */
+}
+
+    </style>
+</head>
+<body>
+
+<!--
+  SLIDE 1: Title_Slide
+  This slide introduces the project topic.
+-->
+<div class="slide-container" id="slide1">
+    <div class="title-layout">
+        <h1>Building and Training a language model from Scratch</h1>
+        <p class="subtitle">A Project Proposal Based on Stanford's CS336</p>
+        <p class="subtitle">Xu Fang</p>
+    </div>
+</div>
+
+<!--
+  SLIDE 2: Relevance & Interest (NEW)
+  Addresses user points:
+  1. 困惑 (Confusion)
+  2. 重要 (Importance)
+-->
+<div class="slide-container" id="slide2">
+    <h2 class="slide-title">Relevance & Interest</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <!-- Left Tile: The "API-Only" Confusion -->
+            <div>
+                <h3>The "API-Only" Confusion</h3>
+                <p>When working on NLP assignments, I've often felt confused. I use high-level libraries  to call powerful models,  only interacting with the API.</p>
+                <p>I don't get to see how they work, why they are designed that way, or what happens inside. It feels like a 'black box'.</p>
+            </div>
+            <!-- Right Tile: The Need for Fundamentals -->
+            <div>
+                <h3>The Importance of Fundamentals</h3>
+                <p>To truly understand  language models, building them from the ground up is essential. This project isn't just using a Transformer; it's about implementing one.</p>
+                <p>This "from scratch" approach is the best way to gain deep, foundational domain knowledge of the core engine behind all of modern AI.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+  SLIDE 3: Project Scope (NEW)
+  Addresses "介绍下作业的scope"
+-->
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">Project Scope: The "From Scratch" Mandate</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <!-- Left Column: The Mandate -->
+            <div>
+                <h3>The Mandate</h3>
+                <p>The  lab provides a clear, challenging scope. We are explicitly <strong>prohibited</strong> from using high-level PyTorch modules:</p>
+                <ul>
+                    <li><code>torch.nn</code> (e.g., no `nn.Linear`, `nn.LayerNorm`)</li>
+                    <li><code>torch.nn.functional</code></li>
+                    <li><code>torch.optim</code> (e.g., no `optim.AdamW`)</li>
+                </ul>
+                <p>This forces implementation of every component.</p>
+            </div>
+            <!-- Right Column: What We Will Build -->
+            <div>
+                <h3>What We Will Build</h3>
+                <p>This project requires us to code every single piece of the pipeline:</p>
+                <ul>
+                    <li><strong>BPE Tokenizer</strong> (The BPE algorithm)</li>
+                    <li><strong>Transformer Model</strong> (RMSNorm, Causal Attention, RoPE, SwiGLU FFN)</li>
+                    <li><strong>Training Mechanics</strong> (Cross-Entropy Loss, AdamW Optimizer, LR Scheduler)</li>
+                    <li><strong>The full training loop, generation, and ablation studies.</strong> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+  SLIDE 4: Data Availability (NEW)
+  Addresses "介绍数据集"
+-->
+<div class="slide-container" id="slide4">
+    <h2 class="slide-title">Data Availability</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <!-- Left Tile: TinyStories -->
+            <div>
+                <h3>TinyStories Dataset</h3>
+                <ul>
+                    <li><strong>Size & Structure:</strong> 2.1 million simple children's stories. Provided as a single, large plaintext file.</li>
+                    <li><strong>Cleanness:</strong> Very clean, synthetic data. Excellent for rapid development, debugging, and initial training.</li>
+                    <li><strong>Use:</strong> Train the BPE tokenizer and our first model. Can be run on a laptop (CPU/MPS).</li>
+                </ul>
+            </div>
+            <!-- Right Tile: OpenWebText -->
+            <div>
+                <h3>OpenWebText Dataset</h3>
+                <ul>
+                    <li><strong>Size & Structure:</strong> Large-scale web text corpus. Also a single plaintext file.</li>
+                    <li><strong>Cleanness:</strong> Unfiltered web data. It will be noisy and contain real-world biases, toxicity, and misinformation.</li>
+                    <li><strong>Use:</strong> Full-scale model training and evaluation against a leaderboard.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+  SLIDE 5: Feasibility & Limitations (NEW)
+  Addresses "feasibility 和limitation"
+-->
+<div class="slide-container" id="slide5">
+    <h2 class="slide-title">Feasibility & Limitations</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <!-- Left Column: Feasibility -->
+            <div>
+                <h3>Feasibility</h3>
+                <p>This project is highly feasible for three main reasons:</p>
+                <ul>
+                    <li><strong>Guided Structure:</strong> The handout acts as a perfect roadmap, breaking the project into manageable sections.</li>
+                    <li><strong>Low-Resource Tips:</strong> The lab provides specific advice for running on personal hardware (like an M1 Mac or CPU) using the TinyStories dataset.</li>
+                    <li><strong>Clear Scope:</strong> The "from scratch" mandate, while challenging, clearly defines the boundaries of the project.</li>
+                </ul>
+            </div>
+            <!-- Right Column: Limitations & Concerns -->
+            <div>
+                <h3>Limitations & Concerns</h3>
+                <p>The primary challenges and concerns are:</p>
+                <ul>
+                    <li><strong>Implementation Complexity:</strong> Building from scratch is error-prone. A single math bug can cause silent failures.</li>
+                    <li><strong>Compute Limits:</strong> The full lab is designed for H100 GPUs. Scaling on personal hardware will be a bottleneck.</li>
+                    <li><strong>Data Bias:</strong> The OpenWebText model will inherit all the biases and toxicity of the unfiltered web.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
