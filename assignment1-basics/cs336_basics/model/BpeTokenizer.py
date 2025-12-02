@@ -5,6 +5,23 @@ import regex
 
 
 class BpeTokenizer:
+    """
+    Byte Pair Encoding (BPE) tokenizer with special tokens support.
+    
+
+    Encoding:
+        Input: text (str) - arbitrary text string
+        Output: token_ids (list[int]) - sequence of token IDs
+    
+    Decoding:
+        Input: token_ids (list[int]) - sequence of token IDs
+        Output: text (str) - reconstructed text string
+    
+    Attributes:
+        vocab: mapping from token ID to byte sequence
+        merges: ordered list of byte pair merge rules
+        special_tokens: list of special tokens (e.g., "<|endoftext|>")
+    """
 
     def __init__(self, vocab : dict[int, bytes],
                  merges: list[tuple[bytes,bytes]], special_tokens : list[str] | None = None):
